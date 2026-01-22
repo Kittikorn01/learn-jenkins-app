@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:18-alpine' // ใช้ Image นี้ที่มี Node.js มาให้แล้ว
+            image 'node:18' // ใช้ Image นี้ที่มี Node.js มาให้แล้ว
             reuseNode true
         }
     }
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build') {
         steps {
-            sh 'npm install'
+            sh 'npm ci'
             sh 'npm run build'
         }
     }
