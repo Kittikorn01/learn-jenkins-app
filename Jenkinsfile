@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:18-alpine' // ใช้ Image นี้ที่มี Node.js มาให้แล้ว
+            args '-u root:root'
             reuseNode true 
         }
     }
@@ -14,6 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'rm -rf node_modules package-lock.json'
                 sh 'npm ci'
                 sh 'npm run build'
             }
